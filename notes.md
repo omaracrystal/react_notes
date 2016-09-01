@@ -6,8 +6,6 @@ https://www.youtube.com/watch?v=MhkGQAoc7bc&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxK
 
 ##ES6 -
 
-**Babel** - compiler for ES6 
-
 1. Destructuring 
 	- adding variables straight to an array or object
 	- set up default values too (if you are passing in several arguments - order doesn’t matter - less errors)
@@ -246,7 +244,17 @@ https://www.youtube.com/watch?v=MhkGQAoc7bc&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxK
 
 ##React
 
+- **Babel** - transpiler for Javascript code such as React JSX code and ES6
+- **Webpack** - module bundler. Takes modules with dependencies and generates static assets representing those modules. As websites are evolving into web apps they are relying more and more on JavaScipt.
+	- webpack-dev-server --content-base src (index.html will be route of load) > live load 
+- everything is a component
+	
+- Render component as decorative tag > see folder basic-react
+	```
+		const app = document.getElementById('app'); 
 
-
+		ReactDOM.render(<Layout/>, app); // this will render into index.html
+	```
+- 
 
 
