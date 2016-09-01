@@ -11,7 +11,7 @@
 	- set up default values too (if you are passing in several arguments - order doesn’t matter - less errors)
 	- reference variable within an array just by naming the variable
 2. Strings and Variables 
-	- Back tick ` single wrapper in order to add ``$(variable)`` and enters are equal to '\n '- a lot easier to create strings
+	- Back tick `````single wrapper in order to add ``$(variable)`` and enters are equal to '\n '- a lot easier to create strings
 3. Block scoping (similar to function scoping) 
 	- **let** b = 2; > indicates something will be changed
 	- **const** foo = 1 
