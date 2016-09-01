@@ -55,6 +55,7 @@
 	- another way to define a function without actually writing "function"
 	- similar to Coffee Script 
 	- implicit returns (see below) - applies to one liners get's rid of brackets and return
+	- lexical context binding (bind outside of immidiate 'this')
 
 	```
 		//before
@@ -73,9 +74,93 @@
 		do.something((a, b) => a + b);
 		do.something(a => a++);
 		[0,1,2].map(val => val++);
+
+		//lexical context binding
+
+		//before 
+		var module = {
+			age: 30,
+			foo: function() {
+				setTimeout(function() {
+					console.log(this.age);
+				}).bind(this), 100);
+			}
+		};
+
+		module.foo();
+
+		//after (arrow functions automatically binds 'this')
+		var module = {
+			age: 30,
+			foo: function() {
+				setTimeout(() => {
+					console.log(this.age);
+				}), 100);
+			}
+		};
+
+
+	```
+6. ES6 Modules
+	- File 1 > require the module
+
+	```
+		var myModule = require("myModule");
 	```
 
-6. Generator Functions
+	- File 2 > define and export file of module
+
+	```
+		//before
+		module.exports.foo = function() {
+
+		}
+
+		module.exports.bar = function() {
+
+		}
+
+		//after
+		export function foo() {
+
+		}
+
+		export function bar() {
+
+		}
+
+		//or you can export and define something:
+		export var foo = 3;
+
+		//OR
+		export default {
+			//whole module if you want
+		};
+	```
+
+	- File 3 > import this functions later in another file
+
+	```
+		//before
+		import myModule from "myModule"; //at the top of file
+
+		//after
+		import { foo as foolish, //redifining the variable
+				 bar } from "myModule";
+
+		//or if you only want to import certain variables - usefule for libraries such as lodash 
+		import { foo, bar } from "myModule"; //destructuring 
+
+		import{ each, omit } from "lodash";
+		omit(obj, "key");
+	```
+
+7. Generator Functions
+	- Async Functions > **async wait** syntax
+		- returns one Promise
+	```
+
+	```
 
 
 
