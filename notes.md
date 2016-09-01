@@ -1,4 +1,6 @@
-#Webpack, ES6 and React Notes
+#Webpack, ES6 and React Notes 
+
+https://www.youtube.com/watch?v=MhkGQAoc7bc&list=PLoYCgNOIyGABj2GQSlDRjgvXtqfDxKm5b
 
 ##Webpack & browserify - 
 
@@ -160,7 +162,7 @@
 	- use with **Bluebird, co, q** libraries for promises
 		- Bluebird = client side, browserside
 			- you can yield variables, objects and arrays
-			
+
 			```
 
 				Promise.coroutine(function* () {
@@ -240,6 +242,10 @@
 		}
 
 	```
+
+
+##React
+
 
 
 
