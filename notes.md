@@ -4,7 +4,7 @@
 
 ##ES6 -
 
-**Babele** - compiler for ES6 
+**Babel** - compiler for ES6 
 
 1. Destructuring 
 	- adding variables straight to an array or object
@@ -155,10 +155,89 @@
 		omit(obj, "key");
 	```
 
-7. Generator Functions
+7. Generator Functions with Promises
+	- traceur library
+	- use with **Bluebird, co, q** libraries for promises
+		- Bluebird = client side, browserside
+			- you can yield variables, objects and arrays
+			
+			```
+
+				Promise.coroutine(function* () {
+
+					var tweets1 = yield $.get('tweets.json'); //yield variables
+
+					//AND - OR
+					var data = yield { //yield objects
+						tweets: $.get('tweets.json'); 
+						profile: $.get('profile.json');
+					}
+
+					//AND - OR 
+					var [tweets, profile] = yield [
+						$.get('tweets.json'), 
+						$.get('profile.json')
+					]
+
+					console.log(data.tweets, data.profile);
+					console.log(tweets1)
+					console.log(tweets, profile)  //will wait until all above are successful before firing
+				})
+
+			```
+
+		- co = node or backend
+		- q = Angular
+	- iterable function by using yield 
 	- Async Functions > **async wait** syntax
 		- returns one Promise
 	```
+		var myGen = function*() { // the * indicates a generator function
+			var one = yield 1;
+			var two = yield 2;
+			var three = yeild 3;
+			console.log(one, two, three); // console.log will be undefined, undefined, undefined
+		}
+		var gen = myGen();
+
+		//how you run the gen funciton
+		console.log(gen.next()); //{ value:1, done: false }
+			//NOTE if you pass in a random agrument then the value of the that next variable will be redifined as such ie:
+			console.log(gen.next(5)); // { value:5, done: false }
+		console.log(gen.next()); //{ value:2, done: false }
+		console.log(gen.next()); //{ value:3, done: false }
+		console.log(gen.next()); //{ value:undefined, done: true }
+		console.log(gen.next()); //errors because you can't call next() on a closed generator
+	```
+
+	- In you pass in a generator into a smarter function then it looks for promises (Looks like synchronous code - but it's actually asynchronous firing everything at once and then reading synchronously)
+
+	```
+		var myGen = function*() { // the * indicates a generator function
+			var one = yield $.get('/api/friends');
+			var two = yield $.get('/api/profile');
+			var three = yield $.get('/api/tweets');
+			console.log(one, two, three); // console.log will be undefined, undefined, undefined
+		}
+		var gen = myGen();
+
+		//give me a generator
+		function smartCode(generator) {
+
+			//get the generator ready to run
+			var gen = generator();
+
+			//get my first yielded value
+			var yieldedVal = gen.next();
+
+			//if it's a promise, wait for it to fulfill and pass the value back into the generator
+			if{(yieldedVal.then)} {
+				//it's a promise!!!
+				yieldedVal.then(gen.next);
+			}
+
+
+		}
 
 	```
 
