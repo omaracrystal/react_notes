@@ -5,18 +5,23 @@ http://codepen.io/DevCoffee/pen/GZQaXb?editors=1010
 https://www.youtube.com/watch?v=PGUMRVowdv8
 
 ### KEY TERMS:
-* Babel
-* ES6
-    * ``class _____ extends React.Component { }``
-    * **destruction** pull out properties you ask for
+* Babel, ES6, JSX
+   
 * HTML name element with id or class to render to ie: ``<div id=“app”></div>``
-* ``ReactDOM.render()`` or ``React.render()``
-* **Props** and **State**
-* JSX
-* React Component has
+
+* React Component has:
     * **constructor**
-    * **methods** including ``render()``
-* super(props)
+        * ``super(props)`` = inheritance the parent object’s properties which is props 
+        * ``this.state`` = contains all initial states of component
+    * ``render()`` method has:
+        * **props**
+            * **destructoring** = ``var { name, age, bio, pic } = this.props;``
+        * **state** = ``var { height } = this.state;``
+        * Return 
+            * ``this.methodName.bind(this)``
+    * Custom **methods**
+    * Then you render the React component with
+        * ``ReactDOM.render()`` or ``React.render()``
 
 EXAMPLE
 ```
